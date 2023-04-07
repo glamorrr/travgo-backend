@@ -6,9 +6,11 @@ const session = require("express-session");
 const passport = require("passport");
 const app_module_1 = require("./app.module");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, {
+        cors: true,
+    });
+    app.set('trust proxy', 1);
     app.useGlobalPipes(new common_1.ValidationPipe());
-    console.log(process.env.NODE_ENV);
     app.use(session({
         secret: 'super-secret',
         resave: false,
@@ -16,7 +18,7 @@ async function bootstrap() {
         cookie: {
             maxAge: 2 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            secure: true,
+            secure: process.env.NODE_ENV === 'production',
             path: '/',
             sameSite: 'none',
         },
@@ -24,6 +26,7 @@ async function bootstrap() {
     app.use(passport.initialize());
     app.use(passport.session());
     await app.listen(3000);
+    console.log('this project running on environment: ' + process.env.NODE_ENV);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
