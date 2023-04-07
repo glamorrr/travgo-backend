@@ -16,7 +16,7 @@ async function bootstrap() {
         cookie: {
             maxAge: 2 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             path: '/',
             sameSite: 'none',
         },

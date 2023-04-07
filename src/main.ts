@@ -8,7 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   app.useGlobalPipes(new ValidationPipe());
-  console.log(process.env.NODE_ENV);
   app.use(
     session({
       secret: 'super-secret',
@@ -17,7 +16,7 @@ async function bootstrap() {
       cookie: {
         maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days in ms
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
         path: '/',
         sameSite: 'none',
       },
@@ -27,5 +26,6 @@ async function bootstrap() {
   app.use(passport.session());
 
   await app.listen(3000);
+  console.log('this project running on environment: ' + process.env.NODE_ENV);
 }
 bootstrap();
