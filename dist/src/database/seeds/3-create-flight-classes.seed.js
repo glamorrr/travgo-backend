@@ -29,21 +29,21 @@ class CreateFlightClasses {
             airlineId: garuda.id,
         })
             .getOne();
-        const lionFlightFromBandungToPraya = await connection
+        const lionFlightFromJakartaToDenpasar = await connection
             .getRepository(flight_entity_1.Flight)
             .createQueryBuilder('flight')
             .where('flight.fromPlace = :fromPlace AND flight.toPlace= :toPlace AND flight.airlineId = :airlineId', {
-            fromPlace: 'Bandung',
-            toPlace: 'Praya',
+            fromPlace: 'Jakarta',
+            toPlace: 'Denpasar',
             airlineId: lion.id,
         })
             .getOne();
-        const citilinkFlightFromSurabayaToKanpur = await connection
+        const citilinkFlightFromJakartaToDenpasar = await connection
             .getRepository(flight_entity_1.Flight)
             .createQueryBuilder('flight')
             .where('flight.fromPlace = :fromPlace AND flight.toPlace= :toPlace AND flight.airlineId = :airlineId', {
-            fromPlace: 'Surabaya',
-            toPlace: 'Kanpur',
+            fromPlace: 'Jakarta',
+            toPlace: 'Denpasar',
             airlineId: citilink.id,
         })
             .getOne();
@@ -60,12 +60,12 @@ class CreateFlightClasses {
             {
                 name: 'Economy',
                 price: 850000,
-                flight: lionFlightFromBandungToPraya,
+                flight: lionFlightFromJakartaToDenpasar,
             },
             {
                 name: 'Economy',
                 price: 650000,
-                flight: citilinkFlightFromSurabayaToKanpur,
+                flight: citilinkFlightFromJakartaToDenpasar,
             },
         ])
             .execute();

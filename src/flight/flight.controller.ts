@@ -1,4 +1,4 @@
-import { Controller, Body, Get } from '@nestjs/common';
+import { Controller, Body, Get, Query } from '@nestjs/common';
 import { User } from 'src/decorator/user.decorator';
 import { User as UserEntity } from 'entities/user.entity';
 import { FlightService } from './flight.service.ts';
@@ -9,8 +9,8 @@ export class FlightController {
   constructor(private flightService: FlightService) {}
 
   @Get()
-  async getAllFlights() {
-    const flights = await this.flightService.getAllflights();
+  async getAllFlights(@Query() query) {
+    const flights = await this.flightService.getAllflights(query);
     const result = [];
     flights.forEach((flight) => {
       flight.classes.forEach((flightClass) => {
