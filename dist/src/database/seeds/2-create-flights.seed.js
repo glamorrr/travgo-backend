@@ -25,8 +25,8 @@ class CreateFlights {
             .into(flight_entity_1.Flight)
             .values([
             {
-                departureTime: new Date(Date.UTC(2023, 3, 4, 8, 0)),
-                arrivalTime: new Date(Date.UTC(2023, 3, 4, 11, 30)),
+                departureTime: new Date(Date.UTC(2023, 5, 1, 8, 0)),
+                arrivalTime: new Date(Date.UTC(2023, 5, 1, 11, 30)),
                 fromCode: 'CGK',
                 toCode: 'DPS',
                 fromPlace: 'Jakarta',
@@ -34,8 +34,8 @@ class CreateFlights {
                 airline: garuda,
             },
             {
-                departureTime: new Date(Date.UTC(2023, 3, 4, 9, 15)),
-                arrivalTime: new Date(Date.UTC(2023, 3, 4, 11, 45)),
+                departureTime: new Date(Date.UTC(2023, 5, 1, 9, 15)),
+                arrivalTime: new Date(Date.UTC(2023, 5, 1, 11, 45)),
                 fromCode: 'CGK',
                 toCode: 'DPS',
                 fromPlace: 'Jakarta',
@@ -43,8 +43,8 @@ class CreateFlights {
                 airline: lion,
             },
             {
-                departureTime: new Date(Date.UTC(2023, 3, 4, 10, 30)),
-                arrivalTime: new Date(Date.UTC(2023, 3, 4, 12, 20)),
+                departureTime: new Date(Date.UTC(2023, 5, 1, 10, 30)),
+                arrivalTime: new Date(Date.UTC(2023, 5, 1, 12, 20)),
                 fromCode: 'CGK',
                 toCode: 'DPS',
                 fromPlace: 'Jakarta',

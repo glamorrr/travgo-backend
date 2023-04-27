@@ -26,12 +26,12 @@ let FlightService = class FlightService {
             .createQueryBuilder('flight')
             .leftJoinAndSelect('flight.airline', 'airline')
             .leftJoinAndSelect('flight.classes', 'classes')
-            .where('flight.fromPlace = :fromPlace', { fromPlace })
-            .andWhere('flight.toPlace = :toPlace', { toPlace })
+            .where('LOWER(flight.fromPlace) = LOWER(:fromPlace)', { fromPlace })
+            .andWhere('LOWER(flight.toPlace) = LOWER(:toPlace)', { toPlace })
             .andWhere('CAST(flight.departureTime AS DATE) = :departureTime', {
             departureTime,
         })
-            .andWhere('classes.name = :flightClass', { flightClass })
+            .andWhere('LOWER(classes.name) = LOWER(:flightClass)', { flightClass })
             .getMany();
     }
 };
