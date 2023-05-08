@@ -5,10 +5,12 @@ import {
   UseGuards,
   Body,
   BadRequestException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/register.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
 Body;
 
 @Controller('auth')
@@ -30,5 +32,16 @@ export class AuthController {
 
     await this.usersService.createUser(user);
     return { message: 'Register berhasil' };
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Post('logout')
+  async logout(@Request() req) {
+    req.logout(function (err) {
+      if (err) {
+        throw new InternalServerErrorException();
+      }
+    });
+    return { message: 'Logout berhasil!' };
   }
 }

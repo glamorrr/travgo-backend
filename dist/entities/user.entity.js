@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
 const bcrypt = require("bcrypt");
+const booked_ticket_entity_1 = require("./booked-ticket.entity");
 let User = class User {
     async hashPassword() {
-        console.log('password', this.password);
         if (this.password) {
             this.password = await bcrypt.hash(this.password, 10);
         }
@@ -36,6 +36,10 @@ __decorate([
     (0, typeorm_1.Column)({ length: 20 }),
     __metadata("design:type", String)
 ], User.prototype, "phoneNumber", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => booked_ticket_entity_1.BookedTicket, (ticket) => ticket.user),
+    __metadata("design:type", Array)
+], User.prototype, "bookedTickets", void 0);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),

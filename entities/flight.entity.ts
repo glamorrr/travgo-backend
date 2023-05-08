@@ -32,7 +32,7 @@ export class Flight {
   arrivalTime: Date;
 
   @OneToMany(() => FlightClass, (flightClass) => flightClass.flight)
-  classes: Flight[];
+  classes: FlightClass[];
 
   @ManyToOne(() => Airline, (airline) => airline.flights)
   airline: Airline;

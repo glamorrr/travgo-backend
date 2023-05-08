@@ -9,4 +9,5 @@ export declare class FlightService {
         flightClass: string;
         departureTime: string;
     }): Promise<Flight[]>;
+    getFlightById(id: string): Promise<Flight>;
 }

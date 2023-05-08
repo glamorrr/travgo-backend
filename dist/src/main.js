@@ -7,7 +7,10 @@ const passport = require("passport");
 const app_module_1 = require("./app.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
-        cors: true,
+        cors: {
+            origin: ['http://localhost:5500', 'https://travgo.my.id'],
+            credentials: true,
+        },
     });
     app.set('trust proxy', 1);
     app.useGlobalPipes(new common_1.ValidationPipe());
@@ -20,7 +23,7 @@ async function bootstrap() {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             path: '/',
-            sameSite: 'none',
+            sameSite: 'lax',
         },
     }));
     app.use(passport.initialize());

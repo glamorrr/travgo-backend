@@ -7,7 +7,10 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    cors: true,
+    cors: {
+      origin: ['http://localhost:5500', 'https://travgo.my.id'],
+      credentials: true,
+    },
   });
 
   app.set('trust proxy', 1);
@@ -22,7 +25,7 @@ async function bootstrap() {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         path: '/',
-        sameSite: 'none',
+        sameSite: 'lax',
       },
     }),
   );

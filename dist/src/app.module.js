@@ -19,6 +19,7 @@ const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
 const typeorm_config_1 = require("./config/typeorm.config");
 const flight_module_1 = require("./flight/flight.module");
+const ticket_module_1 = require("./book-ticket/ticket.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -29,6 +30,7 @@ AppModule = __decorate([
             auth_module_1.AuthModule,
             user_module_1.UserModule,
             flight_module_1.FlightModule,
+            ticket_module_1.TicketModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

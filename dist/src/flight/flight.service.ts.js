@@ -34,6 +34,18 @@ let FlightService = class FlightService {
             .andWhere('LOWER(classes.name) = LOWER(:flightClass)', { flightClass })
             .getMany();
     }
+    async getFlightById(id) {
+        return this.flightRepository
+            .createQueryBuilder('flight')
+            .leftJoinAndSelect('flight.airline', 'airline')
+            .leftJoinAndSelect('flight.classes', 'classes')
+            .leftJoinAndSelect('classes.seats', 'seats')
+            .where('flight.id = :id', { id })
+            .andWhere('LOWER(classes.name) = LOWER(:flightClass)', {
+            flightClass: 'Economy',
+        })
+            .getOne();
+    }
 };
 FlightService = __decorate([
     (0, common_1.Injectable)(),

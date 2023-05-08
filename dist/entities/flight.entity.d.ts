@@ -1,3 +1,4 @@
+import { FlightClass } from './flight-class.entity';
 import { Airline } from './airline.entity';
 export declare class Flight {
     id: string;
@@ -7,6 +8,6 @@ export declare class Flight {
     toCode: string;
     departureTime: Date;
     arrivalTime: Date;
-    classes: Flight[];
+    classes: FlightClass[];
     airline: Airline;
 }

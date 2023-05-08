@@ -4,6 +4,7 @@ import { Flight } from '../../entities/flight.entity';
 import { FlightClass } from '../../entities/flight-class.entity';
 import { FlightSeat } from '../../entities/flight-seat.entity';
 import { Airline } from '../../entities/airline.entity';
+import { BookedTicket } from '../../entities/booked-ticket.entity';
 
 const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -14,7 +15,7 @@ const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME,
   host: process.env.DB_HOST,
   synchronize: true,
-  entities: [User, Flight, FlightClass, FlightSeat, Airline],
+  entities: [User, Flight, FlightClass, FlightSeat, Airline, BookedTicket],
 };
 
 export default typeOrmConfig;

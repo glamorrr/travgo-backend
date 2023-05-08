@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 
 import typeOrmConfig from './config/typeorm.config';
 import { FlightModule } from './flight/flight.module';
+import { TicketModule } from './book-ticket/ticket.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { FlightModule } from './flight/flight.module';
     AuthModule,
     UserModule,
     FlightModule,
+    TicketModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Query } from '@nestjs/common';
+import { Controller, Body, Get, Query, Param } from '@nestjs/common';
 import { User } from 'src/decorator/user.decorator';
 import { User as UserEntity } from 'entities/user.entity';
 import { FlightService } from './flight.service.ts';
@@ -24,5 +24,12 @@ export class FlightController {
       });
     });
     return result;
+  }
+
+  @Get(':id')
+  async getFlightById(@Param() params: any) {
+    const id = params.id;
+    const flight = await this.flightService.getFlightById(id);
+    return flight;
   }
 }

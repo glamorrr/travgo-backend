@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("../user/user.service");
 const register_dto_1 = require("./dto/register.dto");
 const local_auth_guard_1 = require("./guards/local-auth.guard");
+const authenticated_guard_1 = require("./guards/authenticated.guard");
 common_1.Body;
 let AuthController = class AuthController {
     constructor(usersService) {
@@ -32,6 +33,14 @@ let AuthController = class AuthController {
         }
         await this.usersService.createUser(user);
         return { message: 'Register berhasil' };
+    }
+    async logout(req) {
+        req.logout(function (err) {
+            if (err) {
+                throw new common_1.InternalServerErrorException();
+            }
+        });
+        return { message: 'Logout berhasil!' };
     }
 };
 __decorate([
@@ -49,6 +58,14 @@ __decorate([
     __metadata("design:paramtypes", [register_dto_1.RegisterDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "register", null);
+__decorate([
+    (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),
+    (0, common_1.Post)('logout'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "logout", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [user_service_1.UserService])

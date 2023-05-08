@@ -10,4 +10,7 @@ export declare class AuthController {
     register(user: RegisterDto): Promise<{
         message: string;
     }>;
+    logout(req: any): Promise<{
+        message: string;
+    }>;
 }

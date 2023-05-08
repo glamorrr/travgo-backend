@@ -30,6 +30,11 @@ let FlightController = class FlightController {
         });
         return result;
     }
+    async getFlightById(params) {
+        const id = params.id;
+        const flight = await this.flightService.getFlightById(id);
+        return flight;
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -38,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], FlightController.prototype, "getAllFlights", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], FlightController.prototype, "getFlightById", null);
 FlightController = __decorate([
     (0, common_1.Controller)('flights'),
     __metadata("design:paramtypes", [flight_service_ts_1.FlightService])

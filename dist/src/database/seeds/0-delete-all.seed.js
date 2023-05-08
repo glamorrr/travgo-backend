@@ -4,8 +4,15 @@ const flight_seat_entity_1 = require("../../../entities/flight-seat.entity");
 const airline_entity_1 = require("../../../entities/airline.entity");
 const flight_class_entity_1 = require("../../../entities/flight-class.entity");
 const flight_entity_1 = require("../../../entities/flight.entity");
+const booked_ticket_entity_1 = require("../../../entities/booked-ticket.entity");
 class DeleteAll {
     async run(factory, connection) {
+        await connection
+            .getRepository(booked_ticket_entity_1.BookedTicket)
+            .createQueryBuilder()
+            .delete()
+            .where('true')
+            .execute();
         await connection
             .getRepository(flight_seat_entity_1.FlightSeat)
             .createQueryBuilder()

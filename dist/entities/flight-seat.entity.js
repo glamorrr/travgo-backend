@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlightSeat = void 0;
 const typeorm_1 = require("typeorm");
 const flight_class_entity_1 = require("./flight-class.entity");
+const booked_ticket_entity_1 = require("./booked-ticket.entity");
 let FlightSeat = class FlightSeat {
 };
 __decorate([
@@ -26,6 +27,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => flight_class_entity_1.FlightClass, (flightClass) => flightClass.seats),
     __metadata("design:type", flight_class_entity_1.FlightClass)
 ], FlightSeat.prototype, "class", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => booked_ticket_entity_1.BookedTicket, (ticket) => ticket.seat),
+    __metadata("design:type", booked_ticket_entity_1.BookedTicket)
+], FlightSeat.prototype, "ticket", void 0);
 FlightSeat = __decorate([
     (0, typeorm_1.Entity)()
 ], FlightSeat);
